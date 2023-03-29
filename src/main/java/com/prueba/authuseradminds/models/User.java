@@ -1,7 +1,5 @@
 package com.prueba.authuseradminds.models;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.Email;

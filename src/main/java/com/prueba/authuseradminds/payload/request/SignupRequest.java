@@ -1,12 +1,6 @@
 package com.prueba.authuseradminds.payload.request;
 
 import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.*;
  
 public class SignupRequest {

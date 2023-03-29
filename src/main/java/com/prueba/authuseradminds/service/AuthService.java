@@ -28,7 +28,7 @@ import java.time.ZoneId;
 import java.util.*;
 
 /**
- * Servicio de integración con la capa de autenticación RCN SSO LDAP
+ * Servicio de autenticacion
  * @author David M.
  * @version 2023-03-27
  */
@@ -86,38 +86,6 @@ public class AuthService {
                     .body(new MessageResponse("Credenciales inválidas"));
         }
 
-    }
-
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: El nombre de usuario ya esta en uso!"));
-        }
-
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: El correo electrónico ya esta en uso!"));
-        }
-
-        if (signUpRequest.getPassword().equals("LDAP"))
-            signUpRequest.setPassword(signUpRequest.getEmail());
-
-        // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
-                signUpRequest.getFirstName(),
-                signUpRequest.getLastName(),
-                signUpRequest.getDateBirth(),
-                signUpRequest.getAddress(),
-                encoder.encode(signUpRequest.getPassword()),
-                signUpRequest.getMobilePhone(),
-                signUpRequest.getEmail(),
-                signUpRequest.getActive());
-
-        userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
     public ResponseEntity<?> changeUserPassword(@Valid @RequestBody SignupRequest signUpRequest) {
