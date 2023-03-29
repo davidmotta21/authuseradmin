@@ -8,9 +8,31 @@
 		{
 			"name": "Autenticacion",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobilePhone\":\"3103278750\",\r\n    \"password\":\"dmotta$2023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/authuseradmin-data-service/v1/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"authuseradmin-data-service",
+						"v1",
+						"auth",
+						"signin"
+					]
+				}
 			},
 			"response": []
 		},
@@ -19,7 +41,20 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:9090/authuseradmin-data-service/v1/users/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"authuseradmin-data-service",
+						"v1",
+						"users",
+						"all"
+					]
+				}
 			},
 			"response": []
 		},
@@ -28,34 +63,132 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:9090/authuseradmin-data-service/v1/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"authuseradmin-data-service",
+						"v1",
+						"user",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Crear usuario",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkbW90dGEiLCJpYXQiOjE2ODAxMDIxOTMsImV4cCI6MTY4MDE0NTM5M30.gLRdHK2xywOZtLK1ANlDRNAB57GrxXwOK7xRaGp4max4kzhrDlDYvQDMdBLpBUSMuIaJrzMqM9d42lOn6xVQiw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":0,\r\n    \"username\":\"prueba\",\r\n    \"firstName\":\"prueba 2\",\r\n    \"lastName\":\"prueba apellido 2\",\r\n    \"dateBirth\":\"1995-01-23\",\r\n    \"address\":\"Kara 45 # 34-19 apto 301\",\r\n    \"token\":\"11adasjk/*65asdfasdf##$%&\",\r\n    \"password\":\"prueba$2023\",\r\n    \"mobilePhone\":\"3103278751\",\r\n    \"email\":\"prueba@gmail.com\",\r\n    \"active\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/authuseradmin-data-service/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"authuseradmin-data-service",
+						"v1",
+						"user"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Editar usuario",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkbW90dGEiLCJpYXQiOjE2ODAxMDIxOTMsImV4cCI6MTY4MDE0NTM5M30.gLRdHK2xywOZtLK1ANlDRNAB57GrxXwOK7xRaGp4max4kzhrDlDYvQDMdBLpBUSMuIaJrzMqM9d42lOn6xVQiw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2,\r\n    \"username\":\"prueba\",\r\n    \"firstName\":\"prueba nombre editada 2 \",\r\n    \"lastName\":\"prueba apellido editada 2\",\r\n    \"dateBirth\":\"1995-01-23\",\r\n    \"address\":\"Kara 45 # 34-19 apto 301 bloque 3\",\r\n    \"token\":\"11adasjk/*65asdfasdf##$%&\",\r\n    \"password\":\"pruebaEditada$2023\",\r\n    \"mobilePhone\":\"3103278751\",\r\n    \"email\":\"prueba2@gmail.com\",\r\n    \"active\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/authuseradmin-data-service/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"authuseradmin-data-service",
+						"v1",
+						"user"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Eliminar usuario",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkbW90dGEiLCJpYXQiOjE2ODAxMDIxOTMsImV4cCI6MTY4MDE0NTM5M30.gLRdHK2xywOZtLK1ANlDRNAB57GrxXwOK7xRaGp4max4kzhrDlDYvQDMdBLpBUSMuIaJrzMqM9d42lOn6xVQiw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:9090/authuseradmin-data-service/v1/user/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"authuseradmin-data-service",
+						"v1",
+						"user",
+						"2"
+					]
+				}
 			},
 			"response": []
 		}
