@@ -28,10 +28,6 @@ public class AuthController {
 		return authService.authenticateUser(loginRequest, request);
 	}
 
-	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		return authService.registerUser(signUpRequest);
-	}
 
 	@PostMapping("/changep")
 	public ResponseEntity<?> changeUserPassword(@Valid @RequestBody SignupRequest signUpRequest) {
