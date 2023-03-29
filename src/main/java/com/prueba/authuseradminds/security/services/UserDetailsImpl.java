@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.prueba.authuseradminds.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
@@ -21,18 +22,36 @@ public class UserDetailsImpl implements UserDetails {
 	@JsonIgnore
 	private String password;
 
-	private String realname;
+	private String firstName;
+
+	private String lastName;
+
+	private Date dateBirth;
+
+
+	private String address;
+
+
+	private String token;
+
+	private String mobilePhone;
 
 	private String email;
 
 	private Boolean active;
 
 
-	public UserDetailsImpl(Long id, String username, String password, String realname, String email, Boolean active) {
+	public UserDetailsImpl(Long id, String username, String password, String firstName, String lastName,
+						   Date dateBirth, String address, String token, String mobilePhone, String email, Boolean active) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.realname = realname;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateBirth = dateBirth;
+		this.address = address;
+		this.token = token;
+		this.mobilePhone = mobilePhone;
 		this.email = email;
 		this.active = active;
 	}
@@ -44,6 +63,10 @@ public class UserDetailsImpl implements UserDetails {
 				user.getPassword(),
 				user.getFirstName(),
 				user.getLastName(),
+				user.getDateBirth(),
+				user.getAddress(),
+				user.getToken(),
+				user.getMobilePhone(),
 				user.getEmail(),
 				user.getActive()
 				);
@@ -68,8 +91,6 @@ public class UserDetailsImpl implements UserDetails {
 		return password;
 	}
 
-	public String getRealname() {return realname;}
-
 	public String getEmail() { return email; }
 
 	public Boolean getActive() {
@@ -78,6 +99,54 @@ public class UserDetailsImpl implements UserDetails {
 
 	public Boolean getActive(Boolean active) {
 		return active;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Date getDateBirth() {
+		return dateBirth;
+	}
+
+	public void setDateBirth(Date dateBirth) {
+		this.dateBirth = dateBirth;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
 	}
 
 	@Override

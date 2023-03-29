@@ -1,11 +1,8 @@
 FROM eclipse-temurin:17-jdk-focal
  
 WORKDIR /app
- 
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
- 
-COPY src ./src
- 
-CMD ["./mvnw", "spring-boot:run"]
+COPY ./target/authuseradmin-data-service-1.0.0.jar /app
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "authuseradmin-data-service-1.0.0.jar"]

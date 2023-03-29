@@ -2,6 +2,7 @@ package com.prueba.authuseradminds.payload.response;
 
 
 
+import java.util.Date;
 import java.util.List;
 
 public class JwtResponse {
@@ -9,16 +10,30 @@ public class JwtResponse {
 	private String type = "Bearer";
 	private Long id;
 	private String username;
-	private String realname;
+	private String firstName;
+
+	private String lastName;
+
+	private Date dateBirth;
+
+	private String address;
+
+	private String mobilePhone;
 	private String email;
 	private Boolean active;
 
 
-	public JwtResponse(String accessToken, Long id, String username, String realname, String email, Boolean active) {
-		this.token = accessToken;
+	public JwtResponse(String accessToken, Long id, String username, String firstName, String lastName,
+					   Date dateBirth, String address, String token, String mobilePhone, String email, Boolean active) {
+
 		this.id = id;
 		this.username = username;
-		this.realname = realname;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateBirth = dateBirth;
+		this.address = address;
+		this.token = accessToken;
+		this.mobilePhone = mobilePhone;
 		this.email = email;
 		this.active = active;
 	}
@@ -63,6 +78,45 @@ public class JwtResponse {
 		this.username = username;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Date getDateBirth() {
+		return dateBirth;
+	}
+
+	public void setDateBirth(Date dateBirth) {
+		this.dateBirth = dateBirth;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
 
 
 }

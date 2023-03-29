@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(	name = "USERS",
+@Table(	name = "user",
 		uniqueConstraints = { 
 			@UniqueConstraint(columnNames = "USERNAME"),
 			@UniqueConstraint(columnNames = "EMAIL")
@@ -61,6 +61,18 @@ public class User {
 	}
 	public User(Long id, String username, String firstName, String lastName, Date dateBirth, String address, String password, String mobilePhone, String email, Boolean active) {
 		this.id = id;
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateBirth = dateBirth;
+		this.address = address;
+		this.password = password;
+		this.mobilePhone = mobilePhone;
+		this.email = email;
+		this.active = active;
+	}
+
+	public User(String username, String firstName, String lastName, Date dateBirth, String address, String password, String mobilePhone, String email, Boolean active) {
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;

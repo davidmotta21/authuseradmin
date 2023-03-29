@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Servicio de integración con la capa de autenticación RCN SSO LDAP
@@ -51,10 +50,10 @@ public class AuthService {
 
     public ResponseEntity authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletRequest request) {
         Boolean successAuth = false;
-        User user = userRepository.findByEmail(loginRequest.getUsername()).orElse(null);
+        User user = userRepository.findByMobilePhone(loginRequest.getMobilePhone()).orElse(null);
         if (user != null) {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                    new UsernamePasswordAuthenticationToken(user.getUsername(), loginRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String jwt = jwtUtils.generateJwtToken(authentication);
@@ -66,7 +65,12 @@ public class AuthService {
                 return ResponseEntity.ok(new JwtResponse(jwt,
                         userDetails.getId(),
                         userDetails.getUsername(),
-                        userDetails.getRealname(),
+                        userDetails.getFirstName(),
+                        userDetails.getLastName(),
+                        userDetails.getDateBirth(),
+                        userDetails.getAddress(),
+                        userDetails.getToken(),
+                        userDetails.getMobilePhone(),
                         userDetails.getEmail(),
                         userDetails.getActive()
                 ));
@@ -102,10 +106,14 @@ public class AuthService {
 
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
+                signUpRequest.getFirstName(),
+                signUpRequest.getLastName(),
+                signUpRequest.getDateBirth(),
+                signUpRequest.getAddress(),
                 encoder.encode(signUpRequest.getPassword()),
-                signUpRequest.getRealname(),
+                signUpRequest.getMobilePhone(),
                 signUpRequest.getEmail(),
-                signUpRequest.getActive(true));
+                signUpRequest.getActive());
 
         userRepository.save(user);
 

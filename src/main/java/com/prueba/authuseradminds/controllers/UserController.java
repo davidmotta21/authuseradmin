@@ -75,34 +75,17 @@ public class UserController extends DataServiceController {
     @PostMapping(serviceNameV1 + "/user")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<?> createUser(@Valid @RequestBody SignupRequest signupRequest) {
-        User user;
-        user = userRepository.findById(signupRequest.getId()).orElse(null);
-
-        if (!signupRequest.getUsername().equals(user.getUsername())) {
-            if (userRepository.existsByUsername(signupRequest.getUsername())) {
-                return ResponseEntity
-                        .badRequest()
-                        .body(new MessageResponse("Error: El nombre de usuario ya está en uso!"));
-            }
-        }
-
-        if (!signupRequest.getEmail().equals(user.getEmail())){
-            if (userRepository.existsByEmail(signupRequest.getEmail())) {
-                return ResponseEntity
-                        .badRequest()
-                        .body(new MessageResponse("Error: El correo electrónico ya esta en uso!"));
-            }
-        }
+        User user = new User();
 
         user.setUsername(signupRequest.getUsername());
         user.setFirstName(signupRequest.getFirstName());
         user.setLastName(signupRequest.getLastName());
+        user.setDateBirth(signupRequest.getDateBirth());
+        user.setAddress(signupRequest.getAddress());
+        user.setMobilePhone(signupRequest.getMobilePhone());
+        user.setPassword(encoder.encode(signupRequest.getPassword()));
         user.setEmail(signupRequest.getEmail());
         user.setActive(signupRequest.getActive());
-
-        if (!signupRequest.getPassword().equals(user.getPassword())){
-            user.setPassword(encoder.encode(signupRequest.getPassword()));
-        }
 
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
@@ -124,9 +107,12 @@ public class UserController extends DataServiceController {
         user.setUsername(signupRequest.getUsername());
         user.setFirstName(signupRequest.getFirstName());
         user.setLastName(signupRequest.getLastName());
+        user.setDateBirth(signupRequest.getDateBirth());
+        user.setAddress(signupRequest.getAddress());
+        user.setMobilePhone(signupRequest.getMobilePhone());
+        user.setPassword(encoder.encode(signupRequest.getPassword()));
         user.setEmail(signupRequest.getEmail());
         user.setActive(signupRequest.getActive());
-        user.setPassword(encoder.encode(signupRequest.getPassword()));
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
